@@ -22,6 +22,8 @@ class BaseModel:
                     self.__dict__[key] = datetime.strptime(value, time_fom)
                 else:
                     self.__dict__[key] = value
+        else:
+            models.storage.new()
 
     def to_dict(self):
         """converting to a dict for serilization"""
@@ -34,8 +36,9 @@ class BaseModel:
     def save(self):
         """updated datime to now"""
         updated_at = datetime.today()
+        models.storage.save()
 
     def __str__(self):
         """converting obj to string represanation"""
         classname = self.__class__.__name__
-        return ("[{}] {()} {}".format(classname, self.id, self.__dict__))
+        return ("[{}] ({}) {}".format(classname, self.id, self.__dict__))
