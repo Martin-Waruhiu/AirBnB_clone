@@ -23,7 +23,7 @@ class BaseModel:
                 else:
                     self.__dict__[key] = value
         else:
-            models.storage.new()
+            models.storage.new(self)
 
     def to_dict(self):
         """converting to a dict for serilization"""
